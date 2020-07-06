@@ -10,31 +10,13 @@ public class SimpleLotteryApp {
 
         LotteryGame lottery = new LotteryGame();
 
-
         //Create and register players as observers
-        ArrayList<Integer> tamaTickets = new ArrayList<>();
-        tamaTickets.add(3);
-        tamaTickets.add(5);
-        tamaTickets.add(6);
-
-        ArrayList<Integer> ameliaTickets = new ArrayList<>();
-        ameliaTickets.add(9);
-        ameliaTickets.add(2);
-        ameliaTickets.add(6);
-
-        ArrayList<Integer> jamalTickets = new ArrayList<>();
-        jamalTickets.add(4);
-        jamalTickets.add(7);
-        jamalTickets.add(2);
-
-
-
         Player players[] = {
-                new Player("Tama", tamaTickets),
-                new Player("Amelia", ameliaTickets),
-                new Player("Jamal", jamalTickets)
+                new Player("Tama", new int[]{3,33,17,46,47,27},-1),
+                new Player("Bob", new int[]{7, 19, 22, 23},8),
+                new Player("Caesar",new int[]{33, 13},-1 )
         };
-
+      
         for (int i = 0; i < players.length ; i++) {
             lottery.registerObserver(players[i]);
         }
@@ -57,9 +39,9 @@ public class SimpleLotteryApp {
 
         for(Player each: players){
             if(lottery.getWinners()==1 && each.getHasWon()) {
-                -System.out.println("BINGO! " + each.getName() + " has all their numbers called! " + each.getName() + " is the WINNER!");
+                System.out.println("****** WINNER ******\nCongratulations " + each.getName() + ".\nYou have won");
             } else if (lottery.getWinners()>=2 && each.getHasWon()){
-                -System.out.println("BINGO! " + each.getName() + " has all their numbers called! they share their VICTORY!");
+                System.out.println("****** WINNER ******\nCongratulations " + each.getName() + " you share your win!");
             }
         }
 

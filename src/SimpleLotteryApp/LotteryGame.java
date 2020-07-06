@@ -11,7 +11,7 @@ public class LotteryGame extends Observable{
     private ArrayList<Observer> observers;
     private Random rand = new Random();
     private int winners;
-    private int ticketPrice = 1;
+    private int ticketPrice;
 
     //constructor
     public LotteryGame(){
@@ -24,8 +24,9 @@ public class LotteryGame extends Observable{
         this.numbersToCall = numbersToCall;
         this.observers = new ArrayList<Observer>(){};
         this.winners = 0;
+        this.ticketPrice = 1;
 
-        -System.out.println("Starting the simple Bingo game...");
+        System.out.println("**** Welcome to the Simple Lotto ****\nWelcome...");
     }
 
     //getter
@@ -47,22 +48,15 @@ public class LotteryGame extends Observable{
     public void drawNumber(){
         Integer calledNumber = 0;
 
-        calledNumber = getNumbersToCall().get(
-                rand.nextInt(
-                        getNumbersToCall().size()));
-        -System.out.println("Calling out a random number between 1 and 10 inclusive.... " +
+        // generate random number between 1 and 49
+        calledNumber = getNumbersToCall().get(rand.nextInt(getNumbersToCall().size())); 
+        System.out.println("Announcing this week's winning ticket.... " +
                 "the number is....." + calledNumber);
-
-        -getNumbersToCall().remove(calledNumber);  //remove called number from  numbers to call
 
         setChanged();
         notifyObservers(this,calledNumber);
 
     }
-
-
-
-
 
 
     // Observer/Observable methods

@@ -7,13 +7,13 @@ import java.util.Observer;
 
 public class Player implements Observer {
 
-    private ArrayList<Integer> tickets;
+    private int[] tickets;
     private String name;
     private boolean hasWon;
     private int money;  //note -1 will be treated as infinite money - lucky person!
 
     //getters
-    public ArrayList<Integer> getTickets() {
+    public int[] getTickets() {
         return tickets;
     }
 
@@ -26,7 +26,14 @@ public class Player implements Observer {
     }
 
     //contructor
-    public Player(String name, ArrayList<Integer> tickets, int money){
+
+    /**
+     *
+     * @param name
+     * @param tickets
+     * @param money
+     */
+    public Player(String name, int[] tickets, int money){
         this.name = name;
         this.tickets = tickets;
         this.hasWon = false;
@@ -38,7 +45,20 @@ public class Player implements Observer {
 
     public void update(Observable mySubject, Object calledNumber){
 
-        if
+        // check to see if they have money for lottery and check if winner
+        if(this.money != 0){
+            for (Integer each : tickets) {
+                if (each.equals(calledNumber)) {
+                    this.hasWon = true;
+                }
+            }            
+        }
+
+        // reduce money by 1 for each round participated in
+        if(this.money > 0){
+            this.money--;
+        }
+        
 
     }
 
